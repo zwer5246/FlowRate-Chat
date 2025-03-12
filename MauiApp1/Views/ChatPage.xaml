@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.ChatPage"
+             Disappearing="OnDisappearing"
+             Appearing="OnAppearing">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition 
+                Height="70"/>
+            <RowDefinition 
+                Height="9*"/>
+            <RowDefinition 
+                Height="95"/>
+        </Grid.RowDefinitions>
+
+        <Grid
+            Padding="25,0"
+            ColumnDefinitions="90,*">
+            <Image
+                Source="dotnet_bot.png">
+            </Image>
+
+            <Picker
+                Title="Текущий канал чата"
+                SelectedIndexChanged="Picker_SelectedIndexChanged"
+                ItemsSource="{Binding ChatList}"
+                ItemDisplayBinding="{Binding chatName}"
+                Grid.Column="1"
+                FontSize="18" 
+                TextColor="White"
+                WidthRequest="180"
+                HorizontalOptions="Start"
+                x:Name="ChatPicker">
+            </Picker>
+        </Grid>
+        
+        <Grid
+            Padding="25,0"
+            Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition 
+                    Height="95"/>
+                <RowDefinition 
+                    Height="9*"/>
+            </Grid.RowDefinitions>
+
+            <ListView 
+                IsVisible="True"
+                x:Name="ChatListView"
+                ItemsSource="{Binding ChatMessages}"
+                Grid.RowSpan="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="80"/>
+                                    <ColumnDefinition
+                                        Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image
+                                    Grid.Column="0"
+                                    Source="dotnet_bot.png">
+                                </Image>
+                                
+                                <StackLayout 
+                                    Padding="0,0,0,0" 
+                                    Grid.Column="1">
+                                    <Label 
+                                        Text="{Binding userName}" 
+                                        FontSize="18" 
+                                        TextColor="Gray"/>
+                                    <Label 
+                                        Text="{Binding messageData}" 
+                                        FontSize="18" 
+                                        TextColor="White"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid
+                x:Name="LoadingGrid"
+                ColumnDefinitions="52,8*"
+                IsVisible="False">
+                <ActivityIndicator
+                    x:Name="ServerConnectionActivityIndicator"
+                    IsRunning="True"/>
+                <Label
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    x:Name="ServerConnectionLabel"
+                    Text=""/>
+            </Grid>
+        </Grid>
+
+        <Grid 
+            Grid.Row="2" 
+            Padding="25" 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition 
+                    Width="9*"/>
+                <ColumnDefinition 
+                    Width="100"/>
+            </Grid.ColumnDefinitions>
+            
+            <Entry
+                x:Name="EntryMessage" 
+                Grid.Column="0"
+                Completed="SendMessage_Clicked"/>
+
+            <Button
+                x:Name="SendMessage"
+                ImageSource="send_message.png" 
+                Clicked="SendMessage_Clicked"
+                Margin="10,0,0,0"
+                Grid.Column="1"
+                IsEnabled="True"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>

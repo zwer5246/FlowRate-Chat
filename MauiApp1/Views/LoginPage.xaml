@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.LoginPage">
+
+    <Grid 
+        Padding="20"
+        RowDefinitions="8*,2*">
+
+        <Border 
+            WidthRequest="450"
+            HeightRequest="450"
+            Padding="0"
+            Grid.Row="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+            
+            <Grid 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="*,*,*,*,*"
+                Padding="20"
+                MinimumHeightRequest="480"
+                MinimumWidthRequest="400">
+
+                <Grid
+                    Grid.Row="0"
+                    RowDefinitions="64,9*"
+                    ColumnDefinitions="*,*"
+                    HorizontalOptions="Center"
+                    VerticalOptions="StartAndExpand">
+                    <Image 
+                        Grid.Column="0"
+                        Source="login_main.png"
+                        WidthRequest="64"
+                        HeightRequest="64"
+                        Margin="0,30,12,20"/>
+                    <Label
+                        Style="{StaticResource Headline}"
+                        Grid.Column="1"
+                        Text="FlowRate"/>
+                    <Label
+                        Style="{StaticResource Headline}"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="Вход"
+                        Margin="0,-30,0,0"
+                        HorizontalOptions="Start"/>
+
+                </Grid>
+                
+                <Grid
+                    Grid.Row="1"
+                    RowDefinitions="30,9*"
+                    HorizontalOptions="Center"
+                    VerticalOptions="StartAndExpand">
+                    <Label
+                        Grid.Row="0"
+                        Text="Логин"/>
+                    <Entry 
+                        x:Name="LoginEntry"
+                        Grid.Row="1"
+                        MinimumWidthRequest="200"
+                        Text="User123"/>
+                </Grid>
+
+                <Grid
+                    Grid.Row="2"
+                    RowDefinitions="30,9*"
+                    HorizontalOptions="Center"
+                    VerticalOptions="StartAndExpand">
+                    <Label
+                        Grid.Row="0"
+                        Text="Пароль"/>
+                    <Entry 
+                        x:Name="PasswordEntry"
+                        Grid.Row="1"
+                        MinimumWidthRequest="200"
+                        IsPassword="True"
+                        Text="123PassworD"/>
+                </Grid>
+
+                <Grid
+                    Grid.Row="3"
+                    ColumnDefinitions="40,9*"
+                    HorizontalOptions="Center"
+                    VerticalOptions="StartAndExpand">
+                    <Switch
+                        x:Name="RememberMeSwitch"
+                        WidthRequest="10"/>
+                    <Label
+                        Grid.Column="1"
+                        Text="Запомнить вход?"
+                        Margin="8"/>
+                </Grid>
+
+                <Grid
+                    ColumnSpacing="20"
+                    Grid.Row="4"
+                    ColumnDefinitions="3*,3*, 3*"
+                    HorizontalOptions="Center"
+                    VerticalOptions="StartAndExpand">
+                    <Button
+                        x:Name="LoginButton"
+                        Grid.Column="0"
+                        MinimumWidthRequest="100"
+                        Text="Войти"
+                        Clicked="Button_Clicked"/>
+                    <Button
+                        x:Name="ServerProperitesButton"
+                        Grid.Column="1"
+                        MinimumWidthRequest="100"
+                        Text="Сервер"/>
+                    <Button
+                        x:Name="LoginCancelButton"
+                        Grid.Column="2"
+                        MinimumWidthRequest="100"
+                        Text="Отключиться"
+                        IsEnabled="False"
+                        Clicked="LoginCancelButton_Clicked"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Border 
+            WidthRequest="450"
+            HeightRequest="90"
+            Padding="0"
+            Grid.Row="1">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+
+            <Grid 
+                ColumnSpacing="20"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                ColumnDefinitions="6*,2*,2*"
+                Padding="20">
+
+                <Label
+                    VerticalOptions="Center"
+                    Text="Войти с помощью (OAuth):"/>
+                <Button
+                    x:Name="GoogleOAuthButton"
+                    Grid.Column="1"
+                    ImageSource="google_oauth.png"/>
+                <Button
+                    x:Name="VKOAuthButton"
+                    Grid.Column="2"
+                    ImageSource="vk_oauth.png"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
